@@ -36,10 +36,10 @@ function CoachResultsEntry() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(
-        "http://https://spd-backend-production.up.railway.app/results/add",
-        form
-      );
+     await axios.post(
+          `${import.meta.env.VITE_API_URL}/results/add`,
+          coach
+          )
 
       alert("Competition Result Added 😈🔥");
 

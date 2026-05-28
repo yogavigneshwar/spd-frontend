@@ -30,9 +30,9 @@ function AddCoach() {
   const handleSubmit = async () => {
     try {
       await axios.post(
-        "https://spd-backend-production.up.railway.app/coach/add",
-        coach
-      );
+      `${import.meta.env.VITE_API_URL}/coach/add`,
+      coach
+      )
 
       alert("Coach Added Successfully 😈🔥");
 

@@ -30,10 +30,10 @@ function AddStudent() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(
-        "http://https://spd-backend-production.up.railway.app/student/add",
-        student
-      );
+     await axios.post(
+`${import.meta.env.VITE_API_URL}/student/add`,
+coach
+)
 
       alert("Student Added Successfully 😈🔥");
 

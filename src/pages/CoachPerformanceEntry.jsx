@@ -37,10 +37,10 @@ function PerformanceEntry() {
 
   const handleSubmit = async () => {
     try {
-      await axios.post(
-        "http://https://spd-backend-production.up.railway.app/performance/add",
-        form
-      );
+     await axios.post(
+`${import.meta.env.VITE_API_URL}/perfomance/add`,
+coach
+)
 
       alert("Performance Added 😈🔥");
 

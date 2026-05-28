@@ -23,12 +23,10 @@ function CoachQRScanner() {
     scanner.render(
       async (decodedText) => {
         try {
-          await axios.post(
-            "http://https://spd-backend-production.up.railway.app/attendance/mark",
-            {
-              studentCode: decodedText,
-            }
-          );
+        await axios.post(
+        `${import.meta.env.VITE_API_URL}/qrscanner/add`,
+        coach
+        )
 
           alert(
             "Attendance Marked Successfully 😈🔥"
