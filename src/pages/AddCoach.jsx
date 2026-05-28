@@ -30,7 +30,7 @@ function AddCoach() {
   const handleSubmit = async () => {
     try {
       await axios.post(
-        "http://https://spd-backend-production.up.railway.app/coach/add",
+        "https://spd-backend-production.up.railway.app/coach/add",
         coach
       );
 
