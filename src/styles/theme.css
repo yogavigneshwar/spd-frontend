@@ -1,0 +1,86 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1d4ed8);
+  color: white;
+}
+
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.brand-title {
+  font-size: 72px;
+  font-weight: 900;
+  color: #facc15;
+  margin: 0;
+  text-align: center;
+}
+
+.brand-sub {
+  text-align: center;
+  font-size: 20px;
+}
+
+.brand-footer {
+  text-align: center;
+  color: #dbeafe;
+  margin-top: 10px;
+}
+
+.input-box {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  margin-top: 16px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+  margin-top: 20px;
+  background: #facc15;
+  color: #0f172a;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+}
+button {
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  opacity: 0.95;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.dashboard-card {
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}

@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+#reader {
+  border: none !important;
+  width: 100% !important;
+}
+
+#reader video {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+#reader__scan_region {
+  border: none !important;
+  background: transparent !important;
+}
+
+#reader__dashboard {
+  padding-top: 20px !important;
+}
+
+#reader__dashboard_section_csr button {
+  background: #facc15 !important;
+  color: #0f172a !important;
+  border: none !important;
+  padding: 14px 22px !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+
+#reader__dashboard_section_swaplink {
+  color: #facc15 !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+}
+
+#reader__status_span {
+  color: white !important;
+}
+
+#reader__camera_selection {
+  padding: 12px !important;
+  border-radius: 12px !important;
+  border: none !important;
+  margin-top: 10px !important;
+}
