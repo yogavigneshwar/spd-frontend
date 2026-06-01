@@ -27,7 +27,7 @@ function AddCoach() {
     });
   };
 
-  const handleSubmit = async () => {
+ const handleSubmit = async () => {
     try {
       await axios.post(
       `${import.meta.env.VITE_API_URL}/coach/add`,
