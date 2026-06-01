@@ -11,7 +11,7 @@ function StudentLogin() {
   const handleLogin = async () => {
     try {
       const res = await axios.get(
-        `http://https://spd-backend-production.up.railway.app/student/login?parentMobile=${parentMobile}&password=${password}`
+        `https://https://spd-backend-production.up.railway.app/student/login?parentMobile=${parentMobile}&password=${password}`
       );
 
       localStorage.setItem("student", JSON.stringify(res.data));

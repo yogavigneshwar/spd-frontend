@@ -21,7 +21,7 @@ function Coaches() {
 
   useEffect(() => {
     axios
-      .get("http://https://spd-backend-production.up.railway.app/coach/all")
+      .get("https://https://spd-backend-production.up.railway.app/coach/all")
       .then((res) => setCoaches(res.data))
       .catch((err) => console.error(err));
   }, []);

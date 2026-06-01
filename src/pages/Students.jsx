@@ -8,7 +8,7 @@ function Students() {
 
   useEffect(() => {
     axios
-      .get("http://https://spd-backend-production.up.railway.app/student/all")
+      .get("https://https://spd-backend-production.up.railway.app/student/all")
       .then((res) => setStudents(res.data))
       .catch((err) => console.error(err));
   }, []);

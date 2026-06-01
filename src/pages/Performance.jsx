@@ -35,7 +35,7 @@ function Performance() {
 
     axios
       .get(
-        `http://https://spd-backend-production.up.railway.app/performance/student/${student.id}`
+        `https://https://spd-backend-production.up.railway.app/performance/student/${student.id}`
       )
       .then((res) => setPerformance(res.data))
       .catch((err) => console.error(err));

@@ -6,7 +6,7 @@ function StudentTraining() {
 
   useEffect(() => {
     axios
-      .get("http://https://spd-backend-production.up.railway.app/training/all")
+      .get("https://https://spd-backend-production.up.railway.app/training/all")
       .then((response) => {
         setTraining(response.data);
       })
