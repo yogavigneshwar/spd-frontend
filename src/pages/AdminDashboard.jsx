@@ -16,7 +16,7 @@ function AdminDashboard() {
 
   useEffect(() => {
     axios
-      .get("https://https://spd-backend-production.up.railway.app/dashboard/stats")
+      .get("https://spd-backend-production.up.railway.app/dashboard/stats")
       .then((res) => setStats(res.data))
       .catch((err) => console.error(err));
   }, []);

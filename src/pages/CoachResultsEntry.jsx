@@ -22,7 +22,7 @@ function CoachResultsEntry() {
 
   useEffect(() => {
     axios
-      .get("https://https://spd-backend-production.up.railway.app/student/all")
+      .get("https://spd-backend-production.up.railway.app/student/all")
       .then((res) => setStudents(res.data))
       .catch((err) => console.error(err));
   }, []);

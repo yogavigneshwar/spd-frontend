@@ -24,7 +24,7 @@ function StudentResults() {
 
     axios
       .get(
-        `https://https://spd-backend-production.up.railway.app/results/student/${student.id}`
+        `https://spd-backend-production.up.railway.app/results/student/${student.id}`
       )
       .then((res) => setResults(res.data))
       .catch((err) => console.error(err));

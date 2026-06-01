@@ -9,7 +9,7 @@ function Attendance() {
     if (!student) return;
 
     axios
-      .get(`https://https://spd-backend-production.up.railway.app/attendance/student/${student.id}`)
+      .get(`https://spd-backend-production.up.railway.app/attendance/student/${student.id}`)
       .then((res) => setAttendance(res.data))
       .catch((err) => console.error(err));
   }, [student]);

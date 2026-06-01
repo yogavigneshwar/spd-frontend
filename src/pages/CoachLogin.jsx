@@ -11,7 +11,7 @@ function CoachLogin() {
   const handleLogin = async () => {
     try {
       const res = await axios.get(
-        `https://https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
+        `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
       );
 
       localStorage.setItem(
