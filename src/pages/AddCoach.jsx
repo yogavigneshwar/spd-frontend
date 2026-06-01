@@ -139,6 +139,23 @@ function AddCoach() {
       </div>
     </div>
   );
+  const handleSubmit = async () => {
+  try {
+
+    console.log("API URL =", import.meta.env.VITE_API_URL);
+    console.log("POST URL =", `${import.meta.env.VITE_API_URL}/coach/add`);
+
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}/coach/add`,
+      coach
+    );
+
+    alert("Coach Added Successfully");
+  } catch (error) {
+    console.error(error);
+    alert("Error adding coach");
+  }
+};
 }
 
 export default AddCoach;
