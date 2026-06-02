@@ -20,6 +20,13 @@ function StudentLogin() {
       alert("Invalid student credentials");
     }
   };
+  const res = await axios.get(
+  `https://spd-backend-production.up.railway.app/student/login?parentMobile=${parentMobile}&password=${password}`
+);
+
+console.log("LOGIN RESPONSE =", res.data);
+
+localStorage.setItem("student", JSON.stringify(res.data));
 
   return (
     <div className="page-center">
