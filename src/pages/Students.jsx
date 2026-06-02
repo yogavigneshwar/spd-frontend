@@ -8,7 +8,7 @@ function Students() {
 
   useEffect(() => {
     axios
-      .get("https://spd-backend-production.up.railway.app/student/all")
+      .get(`${import.meta.env.VITE_API_URL}/student/all`)
       .then((res) => setStudents(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -18,7 +18,7 @@ function Students() {
       student.studentName
         ?.toLowerCase()
         .includes(search.toLowerCase()) ||
-      student.mobile?.includes(search) ||
+      student.parentMobile?.includes(search) ||
       student.studentCode
         ?.toLowerCase()
         .includes(search.toLowerCase())
@@ -89,7 +89,7 @@ function Students() {
             >
               <tr>
                 <th style={thStyle}>Student Name</th>
-                <th style={thStyle}>Mobile</th>
+                <th style={thStyle}>Parent Mobile</th>
                 <th style={thStyle}>Student ID</th>
               </tr>
             </thead>
@@ -103,7 +103,11 @@ function Students() {
                   }}
                 >
                   <td style={tdStyle}>{student.studentName}</td>
-                  <td style={tdStyle}>{student.mobile}</td>
+
+                  <td style={tdStyle}>
+                    {student.parentMobile}
+                  </td>
+
                   <td
                     style={{
                       ...tdStyle,
