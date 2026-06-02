@@ -14,40 +14,53 @@ function StudentLogin() {
         `https://spd-backend-production.up.railway.app/student/login?parentMobile=${parentMobile}&password=${password}`
       );
 
-      localStorage.setItem("student", JSON.stringify(res.data));
+      localStorage.setItem(
+        "student",
+        JSON.stringify(res.data)
+      );
+
       navigate("/student-dashboard");
     } catch (error) {
+      console.error(error);
       alert("Invalid student credentials");
     }
   };
-  const res = await axios.get(
-  `https://spd-backend-production.up.railway.app/student/login?parentMobile=${parentMobile}&password=${password}`
-);
-
-console.log("LOGIN RESPONSE =", res.data);
-
-localStorage.setItem("student", JSON.stringify(res.data));
 
   return (
     <div className="page-center">
       <div
         className="glass-card"
-        style={{ width: "100%", maxWidth: "450px" }}
+        style={{
+          maxWidth: "500px",
+          width: "100%",
+          padding: "40px",
+        }}
       >
-        <h1 className="brand-title">SPD</h1>
+        <h1
+          style={{
+            fontSize: "42px",
+            color: "#facc15",
+            marginBottom: "10px",
+          }}
+        >
+          Student Login 🎓
+        </h1>
 
-        <p className="brand-sub">Student Login 🎓</p>
-
-        <p className="brand-footer">
-          Powered by Skipnot AD Studios 🚀
+        <p
+          style={{
+            color: "#dbeafe",
+            marginBottom: "30px",
+          }}
+        >
+          Access your performance & attendance
         </p>
 
         <input
           type="text"
-          placeholder="Parent Mobile Number"
+          placeholder="Parent Mobile"
           value={parentMobile}
           onChange={(e) => setParentMobile(e.target.value)}
-          className="input-box"
+          className="input"
         />
 
         <input
@@ -55,10 +68,13 @@ localStorage.setItem("student", JSON.stringify(res.data));
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="input-box"
+          className="input"
         />
 
-        <button onClick={handleLogin} className="primary-btn">
+        <button
+          onClick={handleLogin}
+          className="primary-btn"
+        >
           Login 🚀
         </button>
       </div>
