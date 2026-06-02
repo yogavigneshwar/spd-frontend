@@ -6,14 +6,14 @@ function Attendance() {
   const student = JSON.parse(localStorage.getItem("student"));
 
 console.log("STUDENT =", student);
-  useEffect(() => {
-    if (!student) return;
 
-    axios
-      .get(`https://spd-backend-production.up.railway.app/attendance/student/${student.id}`)
-      .then((res) => setAttendance(res.data))
-      .catch((err) => console.error(err));
-  }, [student]);
+axios
+  .get(`https://spd-backend-production.up.railway.app/attendance/student/${student.id}`)
+  .then((res) => {
+    console.log("ATTENDANCE =", res.data);
+    setAttendance(res.data);
+  })
+  .catch((err) => console.error(err));
 
   return (
     <div className="min-h-screen bg-black text-white p-10">
@@ -40,6 +40,8 @@ console.log("STUDENT =", student);
               </tr>
             ))}
           </tbody>
+
+
         </table>
       </div>
     </div>
