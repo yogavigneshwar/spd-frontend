@@ -8,28 +8,35 @@ function CoachLogin() {
 
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
-    try {
-      console.log(
-  `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
-);
-      const res = await axios.get(
-        `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
-        
-      );
+ const handleLogin = async () => {
+  try {
+    console.log(
+      `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
+    );
 
-      localStorage.setItem(
-        "coach",
-        JSON.stringify(res.data)
-      );
+    const res = await axios.get(
+      `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
+    );
 
-      navigate("/coach-dashboard");
-    } catch (error) {
-      console.log(error.response);
+    console.log("SUCCESS =", res.data);
 
-      alert("Invalid coach credentials");
+    localStorage.setItem(
+      "coach",
+      JSON.stringify(res.data)
+    );
+
+    navigate("/coach-dashboard");
+  } catch (error) {
+    console.log("FULL ERROR =", error);
+
+    if (error.response) {
+      console.log("RESPONSE =", error.response);
+      console.log("DATA =", error.response.data);
     }
-  };
+
+    alert("Invalid coach credentials");
+  }
+};
 
   return (
     <div className="page-center">
