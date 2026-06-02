@@ -5,6 +5,7 @@ function Attendance() {
   const [attendance, setAttendance] = useState([]);
   const student = JSON.parse(localStorage.getItem("student"));
 
+console.log("STUDENT =", student);
   useEffect(() => {
     if (!student) return;
 
