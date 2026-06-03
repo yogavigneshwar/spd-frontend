@@ -5,12 +5,12 @@ function Attendance() {
   const [attendance, setAttendance] = useState([]);
   const student = JSON.parse(localStorage.getItem("student"));
 
-console.log("STUDENT =", student);
+
 
 axios
   .get(`https://spd-backend-production.up.railway.app/attendance/student/${student.id}`)
   .then((res) => {
-    console.log("ATTENDANCE =", res.data);
+   
     setAttendance(res.data);
   })
   .catch((err) => console.error(err));

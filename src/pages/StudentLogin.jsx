@@ -13,7 +13,7 @@ function StudentLogin() {
       const res = await axios.get(
         `https://spd-backend-production.up.railway.app/student/login?parentMobile=${parentMobile}&password=${password}`
       );
-      console.log("LOGIN RESPONSE =", res.data);
+     
 
       localStorage.setItem(
         "student",
