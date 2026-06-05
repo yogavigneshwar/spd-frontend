@@ -23,7 +23,7 @@ function StudentQR() {
 
         <div className="bg-white p-4 rounded-xl inline-block">
           <QRCodeCanvas
-            value={student.studentCode}
+            value={"SSF-SPD-001"}
             size={250}
           />
         </div>
