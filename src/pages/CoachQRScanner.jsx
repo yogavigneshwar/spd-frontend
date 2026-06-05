@@ -25,7 +25,10 @@ function CoachQRScanner() {
         try {
         await axios.post(
         `${import.meta.env.VITE_API_URL}/qrscanner/add`,
-        coach
+        {
+          studentCode: decodedText
+        }
+      
         )
 
           alert(
@@ -33,6 +36,7 @@ function CoachQRScanner() {
           );
         } catch (error) {
           console.error(error);
+          
 
           alert("Error marking attendance");
         }
