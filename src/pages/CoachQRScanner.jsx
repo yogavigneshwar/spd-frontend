@@ -26,7 +26,7 @@ function CoachQRScanner() {
         console.log("SCANNED =",decodedText);
         try {
         await axios.post(
-        `${import.meta.env.VITE_API_URL}/qrscanner/add`,
+        `${import.meta.env.VITE_API_URL}/attendance/add`,
         {
           studentCode: decodedText
         }
