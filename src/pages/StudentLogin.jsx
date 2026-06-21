@@ -9,25 +9,30 @@ function StudentLogin() {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-  try {
-    const res = await axios.get(
-      `https://spd-backend-production.up.railway.app/student/login?parentMobile=${parentMobile}&password=${password}`
-    );
+    try {
+      const res = await axios.get(
+        `https://spd-backend-production.up.railway.app/student/login?parentMobile=${parentMobile}&password=${password}`
+      );
 
-    console.log("LOGIN RESPONSE =", res.data);
+      console.log("LOGIN RESPONSE =", res.data);
 
-    localStorage.setItem(
-      "student",
-      JSON.stringify(res.data)
-    );
+      if (!res.data || !res.data.studentName) {
+        alert("Invalid student credentials");
+        return;
+      }
 
-    navigate("/student-dashboard");
+      localStorage.setItem(
+        "student",
+        JSON.stringify(res.data)
+      );
 
-  } catch (error) {
-    console.log(error.response);
-    alert("Invalid student credentials");
-  }
-};
+      navigate("/student-dashboard");
+
+    } catch (error) {
+      console.log(error.response);
+      alert("Invalid student credentials");
+    }
+  };
 
   return (
     <div

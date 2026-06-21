@@ -8,35 +8,40 @@ function CoachLogin() {
 
   const navigate = useNavigate();
 
- const handleLogin = async () => {
-  try {
-    console.log(
-      `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
-    );
+  const handleLogin = async () => {
+    try {
+      console.log(
+        `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
+      );
 
-    const res = await axios.get(
-      `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
-    );
+      const res = await axios.get(
+        `https://spd-backend-production.up.railway.app/coach/login?mobile=${mobile}&password=${password}`
+      );
 
-    console.log("SUCCESS =", res.data);
+      console.log("SUCCESS =", res.data);
 
-    localStorage.setItem(
-      "coach",
-      JSON.stringify(res.data)
-    );
+      if (!res.data || !res.data.coachName) {
+        alert("Invalid coach credentials");
+        return;
+      }
 
-    navigate("/coach-dashboard");
-  } catch (error) {
-    console.log("FULL ERROR =", error);
+      localStorage.setItem(
+        "coach",
+        JSON.stringify(res.data)
+      );
 
-    if (error.response) {
-      console.log("RESPONSE =", error.response);
-      console.log("DATA =", error.response.data);
+      navigate("/coach-dashboard");
+    } catch (error) {
+      console.log("FULL ERROR =", error);
+
+      if (error.response) {
+        console.log("RESPONSE =", error.response);
+        console.log("DATA =", error.response.data);
+      }
+
+      alert("Invalid coach credentials");
     }
-
-    alert("Invalid coach credentials");
-  }
-};
+  };
 
   return (
     <div className="page-center">
