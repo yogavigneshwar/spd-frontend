@@ -4,6 +4,7 @@ function StudentDashboard() {
   const navigate = useNavigate();
 
   const student = JSON.parse(localStorage.getItem("student"));
+
   console.log("STUDENT =", student);
 
   const cardStyle = {
@@ -79,69 +80,29 @@ function StudentDashboard() {
           gap: "24px",
         }}
       >
-        <div
-          className="dashboard-card"
-          role="button"
-          style={cardStyle}
-          onClick={() => navigate("/attendance")}
-        >
-          <h2 style={{ fontSize: "28px" }}>📅 Attendance</h2>
-
-          <p style={{ color: "#dbeafe" }}>
-            View your attendance records
-          </p>
+        <div style={cardStyle} onClick={() => navigate("/attendance")}>
+          <h2>📅 Attendance</h2>
+          <p>View your attendance records</p>
         </div>
 
-        <div
-          className="dashboard-card"
-          role="button"
-          style={cardStyle}
-          onClick={() => navigate("/performance")}
-        >
-          <h2 style={{ fontSize: "28px" }}>📈 Performance</h2>
-
-          <p style={{ color: "#dbeafe" }}>
-            Track speed, stamina & strength
-          </p>
+        <div style={cardStyle} onClick={() => navigate("/performance")}>
+          <h2>📈 Performance</h2>
+          <p>Track speed, stamina & strength</p>
         </div>
 
-        <div
-          className="dashboard-card"
-          role="button"
-          style={cardStyle}
-          onClick={() => navigate("/student-results")}
-        >
-          <h2 style={{ fontSize: "28px" }}>🏆 Results</h2>
-
-          <p style={{ color: "#dbeafe" }}>
-            Competition achievements & medals
-          </p>
+        <div style={cardStyle} onClick={() => navigate("/student-results")}>
+          <h2>🏆 Results</h2>
+          <p>Competition achievements & medals</p>
         </div>
 
-        <div
-          className="dashboard-card"
-          role="button"
-          style={cardStyle}
-          onClick={() => navigate("/student-qr")}
-        >
-          <h2 style={{ fontSize: "28px" }}>📷 My QR</h2>
-
-          <p style={{ color: "#dbeafe" }}>
-            Scan for attendance tracking
-          </p>
+        <div style={cardStyle} onClick={() => navigate("/student-qr")}>
+          <h2>📷 My QR</h2>
+          <p>Scan for attendance tracking</p>
         </div>
 
-        <div
-          className="dashboard-card"
-          role="button"
-          style={cardStyle}
-          onClick={() => navigate("/student-training")}
-        >
-          <h2 style={{ fontSize: "28px" }}>🏃 Training</h2>
-
-          <p style={{ color: "#dbeafe" }}>
-            Daily training schedules & drills
-          </p>
+        <div style={cardStyle} onClick={() => navigate("/student-training")}>
+          <h2>🏃 Training</h2>
+          <p>Daily training schedules & drills</p>
         </div>
       </div>
 
@@ -156,8 +117,6 @@ function StudentDashboard() {
       </p>
     </div>
   );
-  const student = JSON.parse(localStorage.getItem("student"));
-console.log("DASHBOARD STUDENT =", student);
 }
 
 export default StudentDashboard;
