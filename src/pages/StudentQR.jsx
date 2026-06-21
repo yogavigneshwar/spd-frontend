@@ -7,44 +7,112 @@ function StudentQR() {
 
   if (!student) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "white",
+        fontSize: "20px"
+      }}>
         No student logged in 😭
       </div>
     );
   }
 
+  const containerStyle = {
+    minHeight: "100vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "20px",
+    boxSizing: "border-box"
+  };
+
+  const cardStyle = {
+    width: "100%",
+    maxWidth: "450px",
+    background: "rgba(255,255,255,0.12)",
+    backdropFilter: "blur(18px)",
+    border: "1px solid rgba(255,255,255,0.2)",
+    borderRadius: "24px",
+    padding: "40px",
+    boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
+    textAlign: "center"
+  };
+
+  const detailsContainerStyle = {
+    background: "rgba(0,0,0,0.3)",
+    borderRadius: "16px",
+    padding: "20px",
+    marginBottom: "24px",
+    textAlign: "left",
+    border: "1px solid rgba(255,255,255,0.1)"
+  };
+
+  const labelStyle = {
+    color: "#a1a1aa",
+    fontSize: "13px",
+    margin: "0 0 4px 0",
+    textTransform: "uppercase",
+    letterSpacing: "1px"
+  };
+
+  const valueStyle = {
+    color: "white",
+    fontSize: "20px",
+    fontWeight: "bold",
+    margin: "0 0 16px 0"
+  };
+
+  const codeStyle = {
+    color: "#facc15",
+    fontSize: "20px",
+    fontWeight: "bold",
+    fontFamily: "monospace",
+    margin: "0 0 16px 0"
+  };
+
+  const passStyle = {
+    color: "white",
+    fontSize: "18px",
+    fontFamily: "monospace",
+    margin: "0"
+  };
+
   return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <div className="bg-zinc-900 p-10 rounded-2xl text-center shadow-xl max-w-md w-full mx-4">
-        <h1 className="text-4xl font-bold text-yellow-400 mb-6">
+    <div style={containerStyle}>
+      <div style={cardStyle}>
+        <h1 style={{ fontSize: "32px", color: "#facc15", marginBottom: "24px", fontWeight: "bold", marginTop: 0 }}>
           My Attendance QR 📷
         </h1>
 
-        <div className="bg-zinc-800 p-6 rounded-xl mb-6 text-left border border-zinc-700">
-          <p className="text-lg text-zinc-400 mb-1">Name</p>
-          <p className="text-2xl font-bold text-white mb-4">
-            {student.studentName}
-          </p>
+        <div style={detailsContainerStyle}>
+          <p style={labelStyle}>Name</p>
+          <p style={valueStyle}>{student.studentName}</p>
 
-          <p className="text-lg text-zinc-400 mb-1">Student ID / Code</p>
-          <p className="text-xl font-mono text-yellow-400 mb-4">
-            {student.studentCode || "NOT ASSIGNED"}
-          </p>
+          <p style={labelStyle}>Student ID / Code</p>
+          <p style={codeStyle}>{student.studentCode || "NOT ASSIGNED"}</p>
 
-          <p className="text-lg text-zinc-400 mb-1">Password</p>
-          <p className="text-xl font-mono text-white">
-            {student.password || "N/A"}
-          </p>
+          <p style={labelStyle}>Password</p>
+          <p style={passStyle}>{student.password || "N/A"}</p>
         </div>
 
-        <div className="bg-white p-4 rounded-xl inline-block shadow-lg mb-4">
+        <div style={{
+          background: "white",
+          padding: "16px",
+          borderRadius: "16px",
+          display: "inline-block",
+          boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+          marginBottom: "20px"
+        }}>
           <QRCodeCanvas
             value={student.studentCode || "NO-CODE"}
-            size={250}
+            size={220}
           />
         </div>
         
-        <p className="text-zinc-500 text-sm mt-2">
+        <p style={{ color: "#dbeafe", fontSize: "14px", margin: "10px 0 0 0" }}>
           Show this QR code to your coach to mark attendance
         </p>
       </div>
