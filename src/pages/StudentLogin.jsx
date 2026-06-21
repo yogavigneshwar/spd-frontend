@@ -133,6 +133,17 @@ console.log(
   "AFTER SAVE =",
   localStorage.getItem("student")
 );
+console.log("LOGIN RESPONSE =", res.data);
+
+localStorage.setItem(
+  "student",
+  JSON.stringify(res.data)
+);
+
+console.log(
+  "AFTER SAVE =",
+  localStorage.getItem("student")
+);
 }
 
 export default StudentLogin;
