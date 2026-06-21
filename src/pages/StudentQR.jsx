@@ -6,15 +6,16 @@ function StudentQR() {
   console.log("QR STUDENT =", student);
 
   if (!student) {
-    return <div>No student logged in 😭</div>;
-  }
-    
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        No student logged in 😭
+      </div>
+    );
   }
 
   return (
     <div className="min-h-screen bg-black text-white flex items-center justify-center">
       <div className="bg-zinc-900 p-10 rounded-2xl text-center shadow-xl">
-        
         <h1 className="text-4xl font-bold text-yellow-400 mb-4">
           My Attendance QR 📷
         </h1>
@@ -33,13 +34,9 @@ function StudentQR() {
             size={250}
           />
         </div>
-
       </div>
     </div>
   );
-const student = JSON.parse(localStorage.getItem("student"));
-console.log("QR STUDENT =", student);
-
-
+}
 
 export default StudentQR;
