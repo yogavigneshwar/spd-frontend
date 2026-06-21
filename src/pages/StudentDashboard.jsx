@@ -4,6 +4,7 @@ function StudentDashboard() {
   const navigate = useNavigate();
 
   const student = JSON.parse(localStorage.getItem("student"));
+  console.log("STUDENT =", student);
 
   const cardStyle = {
     background: "rgba(255,255,255,0.12)",
