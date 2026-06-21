@@ -6,11 +6,9 @@ function StudentQR() {
   console.log("QR STUDENT =", student);
 
   if (!student) {
-    return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        No student logged in 😭
-      </div>
-    );
+    return <div>No student logged in 😭</div>;
+  }
+    
   }
 
   return (
@@ -42,6 +40,6 @@ function StudentQR() {
 const student = JSON.parse(localStorage.getItem("student"));
 console.log("QR STUDENT =", student);
 
-}
+
 
 export default StudentQR;
