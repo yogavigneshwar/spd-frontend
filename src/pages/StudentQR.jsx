@@ -39,6 +39,8 @@ function StudentQR() {
       </div>
     </div>
   );
+  const student = JSON.parse(localStorage.getItem("student"));
+console.log("QR STUDENT =", student);
 }
 
 export default StudentQR;

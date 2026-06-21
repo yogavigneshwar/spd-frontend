@@ -156,6 +156,8 @@ function StudentDashboard() {
       </p>
     </div>
   );
+  const student = JSON.parse(localStorage.getItem("student"));
+console.log("DASHBOARD STUDENT =", student);
 }
 
 export default StudentDashboard;
