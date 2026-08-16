@@ -18,6 +18,8 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_API_URL || "https://spd-backend-production.up.railway.app";
+
   const handleStudentLogin = async () => {
     if (!parentMobile.trim() || !studentPassword.trim()) {
       alert("Please enter parent mobile number and password.");
@@ -26,7 +28,7 @@ function Login() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/student/login?parentMobile=${parentMobile.trim()}&password=${studentPassword.trim()}`
+        `${API_URL}/student/login?parentMobile=${parentMobile.trim()}&password=${studentPassword.trim()}`
       );
 
       if (!res.data || !res.data.studentName) {
@@ -53,7 +55,7 @@ function Login() {
     setLoading(true);
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/coach/login?mobile=${coachMobile.trim()}&password=${coachPassword.trim()}`
+        `${API_URL}/coach/login?mobile=${coachMobile.trim()}&password=${coachPassword.trim()}`
       );
 
       if (!res.data || !res.data.coachName) {
