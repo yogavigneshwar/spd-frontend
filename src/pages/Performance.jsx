@@ -43,10 +43,12 @@ function Performance() {
 
   const chartData = performance.map(
     (item, index) => ({
-      record: `Entry ${index + 1}`,
-      speed: item.speed,
-      stamina: item.stamina,
-      strength: item.strength,
+      record: item.recordedDate ? item.recordedDate : `Entry ${index + 1}`,
+      speed: item.speed || 0,
+      explosiveJump: item.height || 0,
+      endurance: item.stamina || 0,
+      strength: item.strength || 0,
+      flexibility: item.flexibility || 0,
     })
   );
 
@@ -57,7 +59,7 @@ function Performance() {
       </h1>
 
       <p style={pageSubtitle}>
-        Track your athletic growth & performance
+        Track your athletic growth & performance metrics over time
       </p>
 
       <div
@@ -70,11 +72,12 @@ function Performance() {
         <table style={tableStyle}>
           <thead style={tableHead}>
             <tr>
-              <th style={thStyle}>Height</th>
-              <th style={thStyle}>Weight</th>
+              <th style={thStyle}>Date</th>
               <th style={thStyle}>Speed</th>
-              <th style={thStyle}>Stamina</th>
+              <th style={thStyle}>Explosive (Jump)</th>
+              <th style={thStyle}>Endurance</th>
               <th style={thStyle}>Strength</th>
+              <th style={thStyle}>Flexibility</th>
             </tr>
           </thead>
 
@@ -87,9 +90,7 @@ function Performance() {
                     "1px solid rgba(255,255,255,0.1)",
                 }}
               >
-                <td style={tdStyle}>{item.height}</td>
-
-                <td style={tdStyle}>{item.weight}</td>
+                <td style={tdStyle}>{item.recordedDate || "N/A"}</td>
 
                 <td
                   style={{
@@ -98,7 +99,17 @@ function Performance() {
                     fontWeight: "700",
                   }}
                 >
-                  {item.speed}
+                  {item.speed != null ? item.speed : "-"}
+                </td>
+
+                <td
+                  style={{
+                    ...tdStyle,
+                    color: "#f472b6",
+                    fontWeight: "700",
+                  }}
+                >
+                  {item.height != null ? item.height : "-"}
                 </td>
 
                 <td
@@ -108,7 +119,7 @@ function Performance() {
                     fontWeight: "700",
                   }}
                 >
-                  {item.stamina}
+                  {item.stamina != null ? item.stamina : "-"}
                 </td>
 
                 <td
@@ -118,10 +129,27 @@ function Performance() {
                     fontWeight: "700",
                   }}
                 >
-                  {item.strength}
+                  {item.strength != null ? item.strength : "-"}
+                </td>
+
+                <td
+                  style={{
+                    ...tdStyle,
+                    color: "#a78bfa",
+                    fontWeight: "700",
+                  }}
+                >
+                  {item.flexibility != null ? item.flexibility : "-"}
                 </td>
               </tr>
             ))}
+            {performance.length === 0 && (
+              <tr>
+                <td colSpan="6" style={{ ...tdStyle, textAlign: "center", color: "#64748b" }}>
+                  No performance records found yet.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -147,26 +175,36 @@ function Performance() {
           height={400}
         >
           <LineChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
 
-            <XAxis dataKey="record" />
+            <XAxis dataKey="record" stroke="#94a3b8" />
 
-            <YAxis />
+            <YAxis stroke="#94a3b8" />
 
-            <Tooltip />
+            <Tooltip contentStyle={{ background: "#1e293b", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "8px", color: "white" }} />
 
             <Legend />
 
             <Line
               type="monotone"
               dataKey="speed"
+              name="Speed"
               stroke="#38bdf8"
               strokeWidth={3}
             />
 
             <Line
               type="monotone"
-              dataKey="stamina"
+              dataKey="explosiveJump"
+              name="Explosive (Jump)"
+              stroke="#f472b6"
+              strokeWidth={3}
+            />
+
+            <Line
+              type="monotone"
+              dataKey="endurance"
+              name="Endurance"
               stroke="#4ade80"
               strokeWidth={3}
             />
@@ -174,7 +212,16 @@ function Performance() {
             <Line
               type="monotone"
               dataKey="strength"
+              name="Strength"
               stroke="#facc15"
+              strokeWidth={3}
+            />
+
+            <Line
+              type="monotone"
+              dataKey="flexibility"
+              name="Flexibility"
+              stroke="#a78bfa"
               strokeWidth={3}
             />
           </LineChart>
