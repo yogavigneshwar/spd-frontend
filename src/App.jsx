@@ -1,17 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
-import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 
-import StudentLogin from "./pages/StudentLogin";
+import Login from "./pages/Login";
 import StudentDashboard from "./pages/StudentDashboard";
 import StudentQR from "./pages/StudentQR";
 import StudentTraining from "./pages/StudentTraining";
 import StudentResults from "./pages/StudentResults";
 
-import CoachLogin from "./pages/CoachLogin";
 import CoachDashboard from "./pages/CoachDashboard";
 import CoachQRScanner from "./pages/CoachQRScanner";
 import CoachPerformanceEntry from "./pages/CoachPerformanceEntry";
@@ -32,9 +30,9 @@ function App() {
     <Router>
       <Routes>
         {/* Public */}
-        <Route path="/" element={<AdminLogin />} />
-        <Route path="/student-login" element={<StudentLogin />} />
-        <Route path="/coach-login" element={<CoachLogin />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/student-login" element={<Navigate to="/" replace />} />
+        <Route path="/coach-login" element={<Navigate to="/" replace />} />
 
         {/* Admin Protected */}
         <Route

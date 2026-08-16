@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 import axios from "axios";
 
@@ -10,6 +10,9 @@ import {
 } from "../styles/ui";
 
 function CoachQRScanner() {
+  const isProcessing = useRef(false);
+  const [scanStatus, setScanStatus] = useState("");
+
   useEffect(() => {
     const scanner = new Html5QrcodeScanner(
       "reader",
@@ -22,29 +25,45 @@ function CoachQRScanner() {
 
     scanner.render(
       async (decodedText) => {
-
-        console.log("SCANNED =",decodedText);
-        try {
-        await axios.post(
-        `${import.meta.env.VITE_API_URL}/attendance/add`,
-        {
-          studentCode: decodedText
+        if (isProcessing.current) {
+          return;
         }
-      
-        )
+        isProcessing.current = true;
+        setScanStatus("Processing scan...");
 
-          alert(
-            "Attendance Marked Successfully 😈🔥"
+        console.log("SCANNED =", decodedText);
+        try {
+          const res = await axios.post(
+            `${import.meta.env.VITE_API_URL}/attendance/add`,
+            {
+              studentCode: decodedText.trim()
+            }
           );
+
+          if (res.data && res.data.remarks === "STUDENT_NOT_FOUND") {
+            setScanStatus("Error: Student not found!");
+            alert("Invalid QR Code: Student not found.");
+          } else if (res.data && res.data.remarks === "ALREADY_MARKED") {
+            setScanStatus("Already marked for today.");
+            alert("Attendance has already been marked for today.");
+          } else {
+            setScanStatus("Attendance marked successfully!");
+            alert(`Success! Attendance marked for: ${decodedText}`);
+          }
         } catch (error) {
           console.error(error);
-          
-
-          alert("Error marking attendance");
+          setScanStatus("Error marking attendance.");
+          alert("Error marking attendance. Connection failed.");
+        } finally {
+          // Release lock after 3 seconds
+          setTimeout(() => {
+            isProcessing.current = false;
+            setScanStatus("");
+          }, 3000);
         }
       },
       (error) => {
-        console.log(error);
+        // ignore scan errors
       }
     );
 
@@ -81,6 +100,22 @@ function CoachQRScanner() {
             overflow: "hidden",
           }}
         ></div>
+
+        {scanStatus && (
+          <div style={{
+            marginTop: "20px",
+            padding: "14px",
+            borderRadius: "12px",
+            background: scanStatus.includes("Error") ? "rgba(239, 68, 68, 0.15)" : "rgba(250, 204, 21, 0.1)",
+            border: scanStatus.includes("Error") ? "1px solid rgba(239, 68, 68, 0.3)" : "1px solid rgba(250, 204, 21, 0.3)",
+            color: scanStatus.includes("Error") ? "#fca5a5" : "#facc15",
+            fontWeight: "700",
+            fontSize: "16px",
+            textAlign: "center"
+          }}>
+            {scanStatus}
+          </div>
+        )}
       </div>
 
       <p style={footerStyle}>

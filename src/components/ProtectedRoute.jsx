@@ -10,11 +10,11 @@ function ProtectedRoute({ children, role }) {
   }
 
   if (role === "student" && !studentLoggedIn) {
-    return <Navigate to="/student-login" />;
+    return <Navigate to="/" />;
   }
 
   if (role === "coach" && !coachLoggedIn) {
-    return <Navigate to="/coach-login" />;
+    return <Navigate to="/" />;
   }
 
   return children;
