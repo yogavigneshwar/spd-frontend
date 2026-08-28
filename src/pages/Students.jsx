@@ -6,12 +6,27 @@ function Students() {
   const [students, setStudents] = useState([]);
   const [search, setSearch] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL || "https://spd-backend-production.up.railway.app";
+
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URL}/student/all`)
+      .get(`${API_URL}/student/all`)
       .then((res) => setStudents(res.data))
       .catch((err) => console.error(err));
   }, []);
+
+  const handleDelete = async (id, name) => {
+    if (window.confirm(`Are you sure you want to delete student "${name}"? This will permanently delete all associated attendance, performance, and results history.`)) {
+      try {
+        await axios.delete(`${API_URL}/student/delete/${id}`);
+        alert("Student deleted successfully!");
+        setStudents(students.filter((student) => student.id !== id));
+      } catch (err) {
+        console.error(err);
+        alert("Error deleting student.");
+      }
+    }
+  };
 
   const filteredStudents = students.filter(
     (student) =>
@@ -91,6 +106,7 @@ function Students() {
                 <th style={thStyle}>Student Name</th>
                 <th style={thStyle}>Parent Mobile</th>
                 <th style={thStyle}>Student ID</th>
+                <th style={thStyle}>Actions</th>
               </tr>
             </thead>
 
@@ -117,8 +133,36 @@ function Students() {
                   >
                     {student.studentCode}
                   </td>
+
+                  <td style={tdStyle}>
+                    <button
+                      onClick={() => handleDelete(student.id, student.studentName)}
+                      style={{
+                        padding: "8px 16px",
+                        background: "#ef4444",
+                        color: "white",
+                        border: "none",
+                        borderRadius: "8px",
+                        fontWeight: "700",
+                        fontSize: "14px",
+                        cursor: "pointer",
+                        transition: "all 0.2s ease"
+                      }}
+                      onMouseOver={(e) => e.target.style.background = "#dc2626"}
+                      onMouseOut={(e) => e.target.style.background = "#ef4444"}
+                    >
+                      Delete 🗑️
+                    </button>
+                  </td>
                 </tr>
               ))}
+              {filteredStudents.length === 0 && (
+                <tr>
+                  <td colSpan="4" style={{ ...tdStyle, textAlign: "center", color: "#64748b", padding: "20px" }}>
+                    No students found.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
