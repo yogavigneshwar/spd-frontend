@@ -123,7 +123,7 @@ function PerformanceEntry() {
               value={student.id}
               style={{ background: "#1e293b", color: "white" }}
             >
-              {student.studentName}
+              {student.studentName} {student.studentCode ? `(${student.studentCode})` : ""}
             </option>
           ))}
         </select>

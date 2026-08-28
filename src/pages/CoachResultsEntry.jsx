@@ -35,13 +35,27 @@ function CoachResultsEntry() {
   };
 
   const handleSubmit = async () => {
+    if (!form.studentId) {
+      alert("Please select a student");
+      return;
+    }
     try {
-     await axios.post(
-          `${import.meta.env.VITE_API_URL}/results/add`,
-          coach
-          )
+      const payload = {
+        studentId: parseInt(form.studentId),
+        eventName: form.competitionName.trim(),
+        position: form.medal.trim(),
+        eventDate: form.date ? form.date : null,
+        remarks: form.remarks ? form.remarks.trim() : "",
+      };
 
-      alert("Competition Result Added 😈🔥");
+      const API_URL = import.meta.env.VITE_API_URL || "https://spd-backend-production.up.railway.app";
+
+      await axios.post(
+        `${API_URL}/results/add`,
+        payload
+      );
+
+      alert("Competition Result Added Successfully 🚀");
 
       setForm({
         studentId: "",
@@ -52,7 +66,6 @@ function CoachResultsEntry() {
       });
     } catch (error) {
       console.error(error);
-
       alert("Error adding result");
     }
   };
@@ -99,7 +112,7 @@ function CoachResultsEntry() {
               key={student.id}
               value={student.id}
             >
-              {student.studentName}
+              {student.studentName} {student.studentCode ? `(${student.studentCode})` : ""}
             </option>
           ))}
         </select>
