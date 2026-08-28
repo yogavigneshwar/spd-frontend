@@ -41,14 +41,22 @@ function Performance() {
       .catch((err) => console.error(err));
   }, [student]);
 
+  // Helper to extract a numeric float out of a text string (e.g. "5.2s" -> 5.2, "Excellent" -> 0)
+  const parseNumericValue = (val) => {
+    if (val === null || val === undefined) return 0;
+    const cleanStr = String(val).replace(/[^0-9.]/g, "");
+    const parsed = parseFloat(cleanStr);
+    return isNaN(parsed) ? 0 : parsed;
+  };
+
   const chartData = performance.map(
     (item, index) => ({
       record: item.recordedDate ? item.recordedDate : `Entry ${index + 1}`,
-      speed: item.speed || 0,
-      explosiveJump: item.height || 0,
-      endurance: item.stamina || 0,
-      strength: item.strength || 0,
-      flexibility: item.flexibility || 0,
+      speed: parseNumericValue(item.speed),
+      explosiveJump: parseNumericValue(item.height),
+      endurance: parseNumericValue(item.stamina),
+      strength: parseNumericValue(item.strength),
+      flexibility: parseNumericValue(item.flexibility),
     })
   );
 

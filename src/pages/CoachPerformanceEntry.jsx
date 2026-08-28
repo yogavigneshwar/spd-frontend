@@ -43,15 +43,17 @@ function PerformanceEntry() {
     try {
       const payload = {
         studentId: parseInt(form.studentId),
-        speed: form.speed ? parseFloat(form.speed) : null,
-        height: form.height ? parseFloat(form.height) : null, // Mapped to Explosive (Jump)
-        stamina: form.stamina ? parseFloat(form.stamina) : null, // Mapped to Endurance
-        strength: form.strength ? parseFloat(form.strength) : null,
-        flexibility: form.flexibility ? parseFloat(form.flexibility) : null,
+        speed: form.speed ? form.speed.trim() : null,
+        height: form.height ? form.height.trim() : null, // Mapped to Explosive (Jump)
+        stamina: form.stamina ? form.stamina.trim() : null, // Mapped to Endurance
+        strength: form.strength ? form.strength.trim() : null,
+        flexibility: form.flexibility ? form.flexibility.trim() : null,
       };
 
+      const API_URL = import.meta.env.VITE_API_URL || "https://spd-backend-production.up.railway.app";
+
       await axios.post(
-        `${import.meta.env.VITE_API_URL}/performance/add`,
+        `${API_URL}/performance/add`,
         payload
       );
 
@@ -130,10 +132,9 @@ function PerformanceEntry() {
           Speed
         </label>
         <input
-          type="number"
-          step="0.01"
+          type="text"
           name="speed"
-          placeholder="Speed"
+          placeholder="Speed (e.g. 5.2s, High)"
           value={form.speed}
           onChange={handleChange}
           style={inputStyle}
@@ -143,10 +144,9 @@ function PerformanceEntry() {
           Explosive (Jump)
         </label>
         <input
-          type="number"
-          step="0.01"
+          type="text"
           name="height"
-          placeholder="Explosive (Jump)"
+          placeholder="Explosive (Jump) (e.g. 2.1m, Good)"
           value={form.height}
           onChange={handleChange}
           style={inputStyle}
@@ -156,10 +156,9 @@ function PerformanceEntry() {
           Endurance
         </label>
         <input
-          type="number"
-          step="0.01"
+          type="text"
           name="stamina"
-          placeholder="Endurance"
+          placeholder="Endurance (e.g. 10m, Moderate)"
           value={form.stamina}
           onChange={handleChange}
           style={inputStyle}
@@ -169,10 +168,9 @@ function PerformanceEntry() {
           Strength
         </label>
         <input
-          type="number"
-          step="0.01"
+          type="text"
           name="strength"
-          placeholder="Strength"
+          placeholder="Strength (e.g. 80kg, High)"
           value={form.strength}
           onChange={handleChange}
           style={inputStyle}
@@ -182,10 +180,9 @@ function PerformanceEntry() {
           Flexibility
         </label>
         <input
-          type="number"
-          step="0.01"
+          type="text"
           name="flexibility"
-          placeholder="Flexibility"
+          placeholder="Flexibility (e.g. 15cm, Excellent)"
           value={form.flexibility}
           onChange={handleChange}
           style={inputStyle}
