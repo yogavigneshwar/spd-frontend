@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { generateMonthlyReportPDF } from "../utils/reportGenerator";
 
 import {
   pageTitle,
@@ -25,21 +26,47 @@ import {
 
 function Performance() {
   const [performance, setPerformance] = useState([]);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const student = JSON.parse(
     localStorage.getItem("student")
   );
+
+  const API_URL = import.meta.env.VITE_API_URL || "https://spd-backend-production.up.railway.app";
 
   useEffect(() => {
     if (!student) return;
 
     axios
       .get(
-        `https://spd-backend-production.up.railway.app/performance/student/${student.id}`
+        `${API_URL}/performance/student/${student.id}`
       )
       .then((res) => setPerformance(res.data))
       .catch((err) => console.error(err));
   }, [student]);
+
+  const handleDownloadReport = async () => {
+    if (!student || !student.id) return;
+    try {
+      setIsDownloading(true);
+      const [attendanceRes, resultsRes] = await Promise.all([
+        axios.get(`${API_URL}/attendance/student/${student.id}`).catch(() => ({ data: [] })),
+        axios.get(`${API_URL}/results/student/${student.id}`).catch(() => ({ data: [] })),
+      ]);
+
+      generateMonthlyReportPDF({
+        student,
+        attendance: attendanceRes.data || [],
+        performance: performance || [],
+        results: resultsRes.data || [],
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Error generating report PDF.");
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   // Helper to extract a numeric float out of a text string (e.g. "5.2s" -> 5.2, "Excellent" -> 0)
   const parseNumericValue = (val) => {
@@ -62,13 +89,36 @@ function Performance() {
 
   return (
     <div className="responsive-page-container" style={{ minHeight: "100vh", padding: "40px" }}>
-      <h1 className="responsive-title" style={pageTitle}>
-        Performance Analytics 📈
-      </h1>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "30px", flexWrap: "wrap", gap: "16px" }}>
+        <div>
+          <h1 className="responsive-title" style={pageTitle}>
+            Performance Analytics 📈
+          </h1>
 
-      <p className="responsive-subtitle" style={pageSubtitle}>
-        Track your athletic growth & performance metrics over time
-      </p>
+          <p className="responsive-subtitle" style={{ ...pageSubtitle, marginBottom: 0 }}>
+            Track your athletic growth & performance metrics over time
+          </p>
+        </div>
+
+        <button
+          onClick={handleDownloadReport}
+          disabled={isDownloading}
+          className="responsive-btn"
+          style={{
+            padding: "14px 22px",
+            borderRadius: "14px",
+            border: "none",
+            background: "#facc15",
+            color: "#0f172a",
+            fontSize: "15px",
+            fontWeight: "800",
+            cursor: isDownloading ? "not-allowed" : "pointer",
+            boxShadow: "0 6px 16px rgba(250, 204, 21, 0.2)",
+          }}
+        >
+          {isDownloading ? "Generating PDF... ⏳" : "📄 Download PDF Report"}
+        </button>
+      </div>
 
       <div
         className="responsive-card"
