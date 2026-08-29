@@ -21,17 +21,20 @@ function StudentDashboard() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", padding: "40px" }}>
+    <div className="responsive-page-container" style={{ minHeight: "100vh", padding: "40px" }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           marginBottom: "40px",
+          flexWrap: "wrap",
+          gap: "20px"
         }}
       >
         <div>
           <h1
+            className="responsive-title"
             style={{
               fontSize: "54px",
               color: "#facc15",
@@ -43,6 +46,7 @@ function StudentDashboard() {
           </h1>
 
           <p
+            className="responsive-subtitle"
             style={{
               color: "#dbeafe",
               fontSize: "18px",
@@ -56,8 +60,9 @@ function StudentDashboard() {
         <button
           onClick={() => {
             localStorage.removeItem("student");
-            navigate("/student-login");
+            navigate("/");
           }}
+          className="responsive-btn"
           style={{
             padding: "16px 28px",
             borderRadius: "18px",
@@ -74,33 +79,34 @@ function StudentDashboard() {
       </div>
 
       <div
+        className="responsive-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
           gap: "24px",
         }}
       >
-        <div style={cardStyle} onClick={() => navigate("/attendance")}>
+        <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/attendance")}>
           <h2>📅 Attendance</h2>
           <p>View your attendance records</p>
         </div>
 
-        <div style={cardStyle} onClick={() => navigate("/performance")}>
+        <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/performance")}>
           <h2>📈 Performance</h2>
           <p>Track speed, stamina & strength</p>
         </div>
 
-        <div style={cardStyle} onClick={() => navigate("/student-results")}>
+        <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/student-results")}>
           <h2>🏆 Results</h2>
           <p>Competition achievements & medals</p>
         </div>
 
-        <div style={cardStyle} onClick={() => navigate("/student-qr")}>
+        <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/student-qr")}>
           <h2>📷 My QR</h2>
           <p>Scan for attendance tracking</p>
         </div>
 
-        <div style={cardStyle} onClick={() => navigate("/student-training")}>
+        <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/student-training")}>
           <h2>🏃 Training</h2>
           <p>Daily training schedules & drills</p>
         </div>
@@ -110,7 +116,7 @@ function StudentDashboard() {
         style={{
           marginTop: "50px",
           textAlign: "center",
-          color: "#dbeafe",
+          color: "#64748b",
         }}
       >
         Powered by Skipnot AD Studios 🚀

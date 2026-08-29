@@ -99,12 +99,12 @@ function AttendanceHistory() {
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
-      <div style={pageContainer}>
-        <h1 style={pageTitle}>Attendance Calendar 📅</h1>
-        <p style={pageSubtitle}>Manage and review athlete attendance history calendar-wise</p>
+      <div className="responsive-page-container" style={pageContainer}>
+        <h1 className="responsive-title" style={pageTitle}>Attendance Calendar 📅</h1>
+        <p className="responsive-subtitle" style={pageSubtitle}>Manage and review athlete attendance history calendar-wise</p>
 
         {/* Calendar Card */}
-        <div style={{ ...glassCard, padding: "30px", marginBottom: "40px" }}>
+        <div className="responsive-card" style={{ ...glassCard, padding: "30px", marginBottom: "40px" }}>
           {/* Month selector header */}
           <div style={{
             display: "flex",
@@ -224,51 +224,53 @@ function AttendanceHistory() {
           Attendees for: <span style={{ color: "#facc15" }}>{selectedDate}</span>
         </h2>
 
-        <div style={{ ...glassCard, overflow: "hidden" }}>
-          <table style={tableStyle}>
-            <thead style={tableHead}>
-              <tr>
-                <th style={thStyle}>Student Code</th>
-                <th style={thStyle}>Student Name</th>
-                <th style={thStyle}>Scan Time</th>
-                <th style={thStyle}>Status</th>
-                <th style={thStyle}>Remarks</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {selectedDateAttendance.map((item) => {
-                const sDetails = getStudentDetails(item.studentId);
-                return (
-                  <tr
-                    key={item.id}
-                    style={{
-                      borderTop: "1px solid rgba(255,255,255,0.06)",
-                    }}
-                  >
-                    <td style={{ ...tdStyle, color: "#facc15", fontFamily: "monospace", fontWeight: "bold" }}>
-                      {sDetails.code}
-                    </td>
-                    <td style={tdStyle}>{sDetails.name}</td>
-                    <td style={{ ...tdStyle, color: "#38bdf8", fontWeight: "600" }}>
-                      {formatScanTime(item.scannedAt)}
-                    </td>
-                    <td style={{ ...tdStyle, color: "#4ade80", fontWeight: "700" }}>
-                      {item.status}
-                    </td>
-                    <td style={tdStyle}>{item.remarks}</td>
-                  </tr>
-                );
-              })}
-              {selectedDateAttendance.length === 0 && (
+        <div className="responsive-card" style={{ ...glassCard, overflow: "hidden" }}>
+          <div className="table-responsive-wrapper">
+            <table style={tableStyle}>
+              <thead style={tableHead}>
                 <tr>
-                  <td colSpan="5" style={{ ...tdStyle, textAlign: "center", color: "#64748b", padding: "30px" }}>
-                    No attendance records found for this date.
-                  </td>
+                  <th style={thStyle}>Student Code</th>
+                  <th style={thStyle}>Student Name</th>
+                  <th style={thStyle}>Scan Time</th>
+                  <th style={thStyle}>Status</th>
+                  <th style={thStyle}>Remarks</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+
+              <tbody>
+                {selectedDateAttendance.map((item) => {
+                  const sDetails = getStudentDetails(item.studentId);
+                  return (
+                    <tr
+                      key={item.id}
+                      style={{
+                        borderTop: "1px solid rgba(255,255,255,0.06)",
+                      }}
+                    >
+                      <td style={{ ...tdStyle, color: "#facc15", fontFamily: "monospace", fontWeight: "bold" }}>
+                        {sDetails.code}
+                      </td>
+                      <td style={tdStyle}>{sDetails.name}</td>
+                      <td style={{ ...tdStyle, color: "#38bdf8", fontWeight: "600" }}>
+                        {formatScanTime(item.scannedAt)}
+                      </td>
+                      <td style={{ ...tdStyle, color: "#4ade80", fontWeight: "700" }}>
+                        {item.status}
+                      </td>
+                      <td style={tdStyle}>{item.remarks}</td>
+                    </tr>
+                  );
+                })}
+                {selectedDateAttendance.length === 0 && (
+                  <tr>
+                    <td colSpan="5" style={{ ...tdStyle, textAlign: "center", color: "#64748b", padding: "30px" }}>
+                      No attendance records found for this date.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <p style={footerStyle}>

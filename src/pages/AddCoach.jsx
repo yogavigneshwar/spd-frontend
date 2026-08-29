@@ -69,14 +69,15 @@ function AddCoach() {
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
-      <div style={pageContainer}>
-        <h1 style={pageTitle}>Add Coach 🏃</h1>
+      <div className="responsive-page-container" style={pageContainer}>
+        <h1 className="responsive-title" style={pageTitle}>Add Coach 🏃</h1>
 
-        <p style={pageSubtitle}>
+        <p className="responsive-subtitle" style={pageSubtitle}>
           Register academy coaches & trainers
         </p>
 
         <div
+          className="responsive-card"
           style={{
             ...glassCard,
             padding: "35px",
@@ -89,6 +90,7 @@ function AddCoach() {
             placeholder="Coach Name"
             value={coach.coachName}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -98,6 +100,7 @@ function AddCoach() {
             placeholder="Coach Mobile"
             value={coach.mobile}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -107,6 +110,7 @@ function AddCoach() {
             placeholder="Password"
             value={coach.password}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -116,6 +120,7 @@ function AddCoach() {
             placeholder="Specialization"
             value={coach.specialization}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -125,11 +130,13 @@ function AddCoach() {
             placeholder="Experience (Years)"
             value={coach.experience}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
           <button
             onClick={handleSubmit}
+            className="responsive-btn"
             style={primaryButton}
           >
             Add Coach 🚀

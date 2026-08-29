@@ -75,16 +75,17 @@ function CoachQRScanner() {
   }, []);
 
   return (
-    <div style={{ minHeight: "100vh", padding: "40px" }}>
-      <h1 style={pageTitle}>
+    <div className="responsive-page-container" style={{ minHeight: "100vh", padding: "40px" }}>
+      <h1 className="responsive-title" style={pageTitle}>
         QR Attendance Scanner 📷
       </h1>
 
-      <p style={pageSubtitle}>
+      <p className="responsive-subtitle" style={pageSubtitle}>
         Scan athlete QR codes for attendance
       </p>
 
       <div
+        className="responsive-card"
         style={{
           ...glassCard,
           padding: "30px",

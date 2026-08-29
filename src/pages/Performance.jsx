@@ -61,105 +61,108 @@ function Performance() {
   );
 
   return (
-    <div style={{ minHeight: "100vh", padding: "40px" }}>
-      <h1 style={pageTitle}>
+    <div className="responsive-page-container" style={{ minHeight: "100vh", padding: "40px" }}>
+      <h1 className="responsive-title" style={pageTitle}>
         Performance Analytics 📈
       </h1>
 
-      <p style={pageSubtitle}>
+      <p className="responsive-subtitle" style={pageSubtitle}>
         Track your athletic growth & performance metrics over time
       </p>
 
       <div
+        className="responsive-card"
         style={{
           ...glassCard,
           overflow: "hidden",
           marginBottom: "40px",
         }}
       >
-        <table style={tableStyle}>
-          <thead style={tableHead}>
-            <tr>
-              <th style={thStyle}>Date</th>
-              <th style={thStyle}>Speed</th>
-              <th style={thStyle}>Explosive (Jump)</th>
-              <th style={thStyle}>Endurance</th>
-              <th style={thStyle}>Strength</th>
-              <th style={thStyle}>Flexibility</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {performance.map((item) => (
-              <tr
-                key={item.id}
-                style={{
-                  borderTop:
-                    "1px solid rgba(255,255,255,0.1)",
-                }}
-              >
-                <td style={tdStyle}>{item.recordedDate || "N/A"}</td>
-
-                <td
-                  style={{
-                    ...tdStyle,
-                    color: "#38bdf8",
-                    fontWeight: "700",
-                  }}
-                >
-                  {item.speed != null ? item.speed : "-"}
-                </td>
-
-                <td
-                  style={{
-                    ...tdStyle,
-                    color: "#f472b6",
-                    fontWeight: "700",
-                  }}
-                >
-                  {item.height != null ? item.height : "-"}
-                </td>
-
-                <td
-                  style={{
-                    ...tdStyle,
-                    color: "#4ade80",
-                    fontWeight: "700",
-                  }}
-                >
-                  {item.stamina != null ? item.stamina : "-"}
-                </td>
-
-                <td
-                  style={{
-                    ...tdStyle,
-                    color: "#facc15",
-                    fontWeight: "700",
-                  }}
-                >
-                  {item.strength != null ? item.strength : "-"}
-                </td>
-
-                <td
-                  style={{
-                    ...tdStyle,
-                    color: "#a78bfa",
-                    fontWeight: "700",
-                  }}
-                >
-                  {item.flexibility != null ? item.flexibility : "-"}
-                </td>
-              </tr>
-            ))}
-            {performance.length === 0 && (
+        <div className="table-responsive-wrapper">
+          <table style={tableStyle}>
+            <thead style={tableHead}>
               <tr>
-                <td colSpan="6" style={{ ...tdStyle, textAlign: "center", color: "#64748b" }}>
-                  No performance records found yet.
-                </td>
+                <th style={thStyle}>Date</th>
+                <th style={thStyle}>Speed</th>
+                <th style={thStyle}>Explosive (Jump)</th>
+                <th style={thStyle}>Endurance</th>
+                <th style={thStyle}>Strength</th>
+                <th style={thStyle}>Flexibility</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {performance.map((item) => (
+                <tr
+                  key={item.id}
+                  style={{
+                    borderTop:
+                      "1px solid rgba(255,255,255,0.1)",
+                  }}
+                >
+                  <td style={tdStyle}>{item.recordedDate || "N/A"}</td>
+
+                  <td
+                    style={{
+                      ...tdStyle,
+                      color: "#38bdf8",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {item.speed != null ? item.speed : "-"}
+                  </td>
+
+                  <td
+                    style={{
+                      ...tdStyle,
+                      color: "#f472b6",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {item.height != null ? item.height : "-"}
+                  </td>
+
+                  <td
+                    style={{
+                      ...tdStyle,
+                      color: "#4ade80",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {item.stamina != null ? item.stamina : "-"}
+                  </td>
+
+                  <td
+                    style={{
+                      ...tdStyle,
+                      color: "#facc15",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {item.strength != null ? item.strength : "-"}
+                  </td>
+
+                  <td
+                    style={{
+                      ...tdStyle,
+                      color: "#a78bfa",
+                      fontWeight: "700",
+                    }}
+                  >
+                    {item.flexibility != null ? item.flexibility : "-"}
+                  </td>
+                </tr>
+              ))}
+              {performance.length === 0 && (
+                <tr>
+                  <td colSpan="6" style={{ ...tdStyle, textAlign: "center", color: "#64748b" }}>
+                    No performance records found yet.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <div

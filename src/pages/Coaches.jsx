@@ -38,10 +38,10 @@ function Coaches() {
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
-      <div style={pageContainer}>
-        <h1 style={pageTitle}>Coaches 🏃</h1>
+      <div className="responsive-page-container" style={pageContainer}>
+        <h1 className="responsive-title" style={pageTitle}>Coaches 🏃</h1>
 
-        <p style={pageSubtitle}>
+        <p className="responsive-subtitle" style={pageSubtitle}>
           Manage academy coaches & trainers
         </p>
 
@@ -50,50 +50,61 @@ function Coaches() {
           placeholder="Search by name / mobile 🔍"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          className="responsive-input"
           style={searchInput}
         />
 
         <div
+          className="responsive-card"
           style={{
             ...glassCard,
             overflow: "hidden",
           }}
         >
-          <table style={tableStyle}>
-            <thead style={tableHead}>
-              <tr>
-                <th style={thStyle}>Coach Name</th>
-                <th style={thStyle}>Mobile</th>
-                <th style={thStyle}>Specialization</th>
-              </tr>
-            </thead>
+          <div className="table-responsive-wrapper">
+            <table style={tableStyle}>
+              <thead style={tableHead}>
+                <tr>
+                  <th style={thStyle}>Coach Name</th>
+                  <th style={thStyle}>Mobile</th>
+                  <th style={thStyle}>Specialization</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {filteredCoaches.map((coach) => (
-                <tr
-                  key={coach.id}
-                  style={{
-                    borderTop:
-                      "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <td style={tdStyle}>{coach.coachName}</td>
-
-                  <td style={tdStyle}>{coach.mobile}</td>
-
-                  <td
+              <tbody>
+                {filteredCoaches.map((coach) => (
+                  <tr
+                    key={coach.id}
                     style={{
-                      ...tdStyle,
-                      color: "#facc15",
-                      fontWeight: "700",
+                      borderTop:
+                        "1px solid rgba(255,255,255,0.1)",
                     }}
                   >
-                    {coach.specialization}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                    <td style={tdStyle}>{coach.coachName}</td>
+
+                    <td style={tdStyle}>{coach.mobile}</td>
+
+                    <td
+                      style={{
+                        ...tdStyle,
+                        color: "#facc15",
+                        fontWeight: "700",
+                      }}
+                    >
+                      {coach.specialization}
+                    </td>
+                  </tr>
+                ))}
+                {filteredCoaches.length === 0 && (
+                  <tr>
+                    <td colSpan="3" style={{ ...tdStyle, textAlign: "center", color: "#64748b", padding: "20px" }}>
+                      No coaches found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <p style={footerStyle}>

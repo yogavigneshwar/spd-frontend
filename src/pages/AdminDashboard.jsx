@@ -39,8 +39,9 @@ function AdminDashboard() {
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
-      <div style={{ flex: 1, padding: "40px" }}>
+      <div className="responsive-page-container" style={{ flex: 1, padding: "40px" }}>
         <h1
+          className="responsive-title"
           style={{
             fontSize: "48px",
             color: "#facc15",
@@ -52,6 +53,7 @@ function AdminDashboard() {
         </h1>
 
         <p
+          className="responsive-subtitle"
           style={{
             color: "#dbeafe",
             fontSize: "18px",
@@ -62,6 +64,7 @@ function AdminDashboard() {
         </p>
 
         <div
+          className="responsive-grid"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
@@ -69,7 +72,7 @@ function AdminDashboard() {
           }}
         >
           <div
-            className="dashboard-card"
+            className="dashboard-card responsive-card"
             role="button"
             style={cardStyle}
             onClick={() => navigate("/students")}
@@ -90,7 +93,7 @@ function AdminDashboard() {
           </div>
 
           <div
-            className="dashboard-card"
+            className="dashboard-card responsive-card"
             role="button"
             style={cardStyle}
             onClick={() => navigate("/coaches")}
@@ -111,7 +114,7 @@ function AdminDashboard() {
           </div>
 
           <div
-            className="dashboard-card"
+            className="dashboard-card responsive-card"
             role="button"
             style={cardStyle}
             onClick={() => navigate("/attendance-history")}
@@ -132,7 +135,7 @@ function AdminDashboard() {
           </div>
 
           <div
-            className="dashboard-card"
+            className="dashboard-card responsive-card"
             role="button"
             style={cardStyle}
             onClick={() => navigate("/performance")}
@@ -153,7 +156,7 @@ function AdminDashboard() {
           </div>
 
           <div
-            className="dashboard-card"
+            className="dashboard-card responsive-card"
             role="button"
             style={cardStyle}
             onClick={() => navigate("/student-results")}
@@ -178,7 +181,7 @@ function AdminDashboard() {
           style={{
             marginTop: "50px",
             textAlign: "center",
-            color: "#dbeafe",
+            color: "#64748b",
           }}
         >
           Powered by Skipnot AD Studios 🚀

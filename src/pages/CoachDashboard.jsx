@@ -21,17 +21,20 @@ function CoachDashboard() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", padding: "40px" }}>
+    <div className="responsive-page-container" style={{ minHeight: "100vh", padding: "40px" }}>
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           marginBottom: "40px",
+          flexWrap: "wrap",
+          gap: "20px"
         }}
       >
         <div>
           <h1
+            className="responsive-title"
             style={{
               fontSize: "54px",
               color: "#facc15",
@@ -43,6 +46,7 @@ function CoachDashboard() {
           </h1>
 
           <p
+            className="responsive-subtitle"
             style={{
               color: "#dbeafe",
               fontSize: "18px",
@@ -56,8 +60,9 @@ function CoachDashboard() {
         <button
           onClick={() => {
             localStorage.removeItem("coach");
-            navigate("/coach-login");
+            navigate("/");
           }}
+          className="responsive-btn"
           style={{
             padding: "16px 28px",
             borderRadius: "18px",
@@ -74,6 +79,7 @@ function CoachDashboard() {
       </div>
 
       <div
+        className="responsive-grid"
         style={{
           display: "grid",
           gridTemplateColumns:
@@ -82,7 +88,7 @@ function CoachDashboard() {
         }}
       >
         <div
-          className="dashboard-card"
+          className="dashboard-card responsive-card"
           role="button"
           style={cardStyle}
           onClick={() =>
@@ -99,7 +105,7 @@ function CoachDashboard() {
         </div>
 
         <div
-          className="dashboard-card"
+          className="dashboard-card responsive-card"
           role="button"
           style={cardStyle}
           onClick={() =>
@@ -116,7 +122,7 @@ function CoachDashboard() {
         </div>
 
         <div
-          className="dashboard-card"
+          className="dashboard-card responsive-card"
           role="button"
           style={cardStyle}
           onClick={() =>

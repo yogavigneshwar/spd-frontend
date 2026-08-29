@@ -66,16 +66,17 @@ student
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
-      <div style={pageContainer}>
-        <h1 style={pageTitle}>
+      <div className="responsive-page-container" style={pageContainer}>
+        <h1 className="responsive-title" style={pageTitle}>
           Add Student 👨‍🎓
         </h1>
 
-        <p style={pageSubtitle}>
+        <p className="responsive-subtitle" style={pageSubtitle}>
           Register new athletes into SPD
         </p>
 
         <div
+          className="responsive-card"
           style={{
             ...glassCard,
             padding: "35px",
@@ -88,6 +89,7 @@ student
             placeholder="Student Name"
             value={student.studentName}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -97,6 +99,7 @@ student
             placeholder="Student Mobile"
             value={student.mobile}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -106,6 +109,7 @@ student
             placeholder="Parent Mobile"
             value={student.parentMobile}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -115,6 +119,7 @@ student
             placeholder="Password"
             value={student.password}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -124,6 +129,7 @@ student
             placeholder="Sport"
             value={student.sport}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
@@ -133,11 +139,13 @@ student
             placeholder="Age"
             value={student.age}
             onChange={handleChange}
+            className="responsive-input"
             style={inputStyle}
           />
 
           <button
             onClick={handleSubmit}
+            className="responsive-btn"
             style={primaryButton}
           >
             Add Student 🚀

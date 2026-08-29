@@ -85,3 +85,57 @@ button:active {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
+
+/* Mobile Responsiveness Overrides */
+@media (max-width: 767px) {
+  /* Page container padding override */
+  .responsive-page-container {
+    padding: 16px !important;
+  }
+
+  /* Grid layout overrides */
+  .responsive-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Font size reduction for mobile */
+  .responsive-title {
+    font-size: 32px !important;
+    margin-top: 10px !important;
+  }
+  
+  .responsive-subtitle {
+    font-size: 14px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Glass card padding */
+  .responsive-card {
+    padding: 16px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Form input overrides */
+  .responsive-input {
+    padding: 12px !important;
+    font-size: 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* Button overrides */
+  .responsive-btn {
+    padding: 12px 20px !important;
+    font-size: 15px !important;
+    border-radius: 8px !important;
+  }
+
+  /* Table horizontal scroll wrapper */
+  .table-responsive-wrapper {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}

@@ -43,8 +43,9 @@ function Students() {
     <div style={{ display: "flex", minHeight: "100vh" }}>
       <Sidebar />
 
-      <div style={{ flex: 1, padding: "40px" }}>
+      <div className="responsive-page-container" style={{ flex: 1, padding: "40px" }}>
         <h1
+          className="responsive-title"
           style={{
             fontSize: "48px",
             color: "#facc15",
@@ -56,6 +57,7 @@ function Students() {
         </h1>
 
         <p
+          className="responsive-subtitle"
           style={{
             color: "#dbeafe",
             fontSize: "18px",
@@ -70,6 +72,7 @@ function Students() {
           placeholder="Search by name / mobile / student ID 🔍"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          className="responsive-input"
           style={{
             width: "100%",
             padding: "18px",
@@ -82,6 +85,7 @@ function Students() {
         />
 
         <div
+          className="responsive-card"
           style={{
             background: "rgba(255,255,255,0.12)",
             backdropFilter: "blur(18px)",
@@ -91,87 +95,90 @@ function Students() {
             boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
           }}
         >
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-            }}
-          >
-            <thead
+          <div className="table-responsive-wrapper">
+            <table
               style={{
-                background: "rgba(255,255,255,0.08)",
+                width: "100%",
+                borderCollapse: "collapse",
               }}
             >
-              <tr>
-                <th style={thStyle}>Student Name</th>
-                <th style={thStyle}>Parent Mobile</th>
-                <th style={thStyle}>Student ID</th>
-                <th style={thStyle}>Actions</th>
-              </tr>
-            </thead>
+              <thead
+                style={{
+                  background: "rgba(255,255,255,0.08)",
+                }}
+              >
+                <tr>
+                  <th style={thStyle}>Student Name</th>
+                  <th style={thStyle}>Parent Mobile</th>
+                  <th style={thStyle}>Student ID</th>
+                  <th style={thStyle}>Actions</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {filteredStudents.map((student) => (
-                <tr
-                  key={student.id}
-                  style={{
-                    borderTop: "1px solid rgba(255,255,255,0.1)",
-                  }}
-                >
-                  <td style={tdStyle}>{student.studentName}</td>
-
-                  <td style={tdStyle}>
-                    {student.parentMobile}
-                  </td>
-
-                  <td
+              <tbody>
+                {filteredStudents.map((student) => (
+                  <tr
+                    key={student.id}
                     style={{
-                      ...tdStyle,
-                      color: "#facc15",
-                      fontWeight: "700",
+                      borderTop: "1px solid rgba(255,255,255,0.1)",
                     }}
                   >
-                    {student.studentCode}
-                  </td>
+                    <td style={tdStyle}>{student.studentName}</td>
 
-                  <td style={tdStyle}>
-                    <button
-                      onClick={() => handleDelete(student.id, student.studentName)}
+                    <td style={tdStyle}>
+                      {student.parentMobile}
+                    </td>
+
+                    <td
                       style={{
-                        padding: "8px 16px",
-                        background: "#ef4444",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "8px",
+                        ...tdStyle,
+                        color: "#facc15",
                         fontWeight: "700",
-                        fontSize: "14px",
-                        cursor: "pointer",
-                        transition: "all 0.2s ease"
                       }}
-                      onMouseOver={(e) => e.target.style.background = "#dc2626"}
-                      onMouseOut={(e) => e.target.style.background = "#ef4444"}
                     >
-                      Delete 🗑️
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {filteredStudents.length === 0 && (
-                <tr>
-                  <td colSpan="4" style={{ ...tdStyle, textAlign: "center", color: "#64748b", padding: "20px" }}>
-                    No students found.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                      {student.studentCode}
+                    </td>
+
+                    <td style={tdStyle}>
+                      <button
+                        onClick={() => handleDelete(student.id, student.studentName)}
+                        className="responsive-btn"
+                        style={{
+                          padding: "8px 16px",
+                          background: "#ef4444",
+                          color: "white",
+                          border: "none",
+                          borderRadius: "8px",
+                          fontWeight: "700",
+                          fontSize: "14px",
+                          cursor: "pointer",
+                          transition: "all 0.2s ease"
+                        }}
+                        onMouseOver={(e) => e.target.style.background = "#dc2626"}
+                        onMouseOut={(e) => e.target.style.background = "#ef4444"}
+                      >
+                        Delete 🗑️
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {filteredStudents.length === 0 && (
+                  <tr>
+                    <td colSpan="4" style={{ ...tdStyle, textAlign: "center", color: "#64748b", padding: "20px" }}>
+                      No students found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <p
           style={{
             marginTop: "40px",
             textAlign: "center",
-            color: "#dbeafe",
+            color: "#64748b",
           }}
         >
           Powered by Skipnot AD Studios 🚀
