@@ -178,9 +178,9 @@ function StudentDashboard() {
           <p>Scan for attendance tracking</p>
         </div>
 
-        <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/student-training")}>
-          <h2>🏃 Training</h2>
-          <p>Daily training schedules & drills</p>
+        <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/student-nutrition")}>
+          <h2>🥗 Daily Nutrition</h2>
+          <p>Log & track your daily meals & sleep</p>
         </div>
       </div>
 

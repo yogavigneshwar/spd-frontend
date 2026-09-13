@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import StudentDashboard from "./pages/StudentDashboard";
 import StudentQR from "./pages/StudentQR";
 import StudentTraining from "./pages/StudentTraining";
+import StudentNutrition from "./pages/StudentNutrition";
 import StudentResults from "./pages/StudentResults";
 
 import CoachDashboard from "./pages/CoachDashboard";
@@ -107,12 +108,17 @@ function App() {
         />
 
         <Route
-          path="/student-training"
+          path="/student-nutrition"
           element={
             <ProtectedRoute role="student">
-              <StudentTraining />
+              <StudentNutrition />
             </ProtectedRoute>
           }
+        />
+
+        <Route
+          path="/student-training"
+          element={<Navigate to="/student-nutrition" replace />}
         />
 
         <Route
