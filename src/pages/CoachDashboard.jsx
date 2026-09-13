@@ -137,6 +137,23 @@ function CoachDashboard() {
             Add medals & competition results
           </p>
         </div>
+
+        <div
+          className="dashboard-card responsive-card"
+          role="button"
+          style={cardStyle}
+          onClick={() =>
+            navigate("/coach-nutrition")
+          }
+        >
+          <h2 style={{ fontSize: "28px" }}>
+            🥗 Students Nutrition
+          </h2>
+
+          <p style={{ color: "#dbeafe" }}>
+            Monitor daily dietary intake & routine logs
+          </p>
+        </div>
       </div>
 
       <p

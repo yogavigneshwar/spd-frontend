@@ -33,10 +33,11 @@ function StudentDashboard() {
     try {
       setIsDownloading(true);
 
-      const [attendanceRes, performanceRes, resultsRes] = await Promise.all([
+      const [attendanceRes, performanceRes, resultsRes, nutritionRes] = await Promise.all([
         axios.get(`${API_URL}/attendance/student/${student.id}`).catch(() => ({ data: [] })),
         axios.get(`${API_URL}/performance/student/${student.id}`).catch(() => ({ data: [] })),
         axios.get(`${API_URL}/results/student/${student.id}`).catch(() => ({ data: [] })),
+        axios.get(`${API_URL}/nutrition/student/${student.id}`).catch(() => ({ data: [] })),
       ]);
 
       generateMonthlyReportPDF({
@@ -44,6 +45,7 @@ function StudentDashboard() {
         attendance: attendanceRes.data || [],
         performance: performanceRes.data || [],
         results: resultsRes.data || [],
+        nutrition: nutritionRes.data || [],
       });
     } catch (error) {
       console.error("Error generating monthly report:", error);

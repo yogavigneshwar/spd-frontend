@@ -15,6 +15,7 @@ import CoachDashboard from "./pages/CoachDashboard";
 import CoachQRScanner from "./pages/CoachQRScanner";
 import CoachPerformanceEntry from "./pages/CoachPerformanceEntry";
 import CoachResultsEntry from "./pages/CoachResultsEntry";
+import CoachNutrition from "./pages/CoachNutrition";
 
 import AddStudent from "./pages/AddStudent";
 import AddCoach from "./pages/AddCoach";
@@ -181,6 +182,15 @@ function App() {
           element={
             <ProtectedRoute role="coach">
               <CoachResultsEntry />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/coach-nutrition"
+          element={
+            <ProtectedRoute role="coach">
+              <CoachNutrition />
             </ProtectedRoute>
           }
         />
