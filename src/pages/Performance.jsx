@@ -49,10 +49,9 @@ function Performance() {
     if (!student || !student.id) return;
     try {
       setIsDownloading(true);
-      const [attendanceRes, resultsRes, nutritionRes] = await Promise.all([
+      const [attendanceRes, resultsRes] = await Promise.all([
         axios.get(`${API_URL}/attendance/student/${student.id}`).catch(() => ({ data: [] })),
         axios.get(`${API_URL}/results/student/${student.id}`).catch(() => ({ data: [] })),
-        axios.get(`${API_URL}/nutrition/student/${student.id}`).catch(() => ({ data: [] })),
       ]);
 
       generateMonthlyReportPDF({
@@ -60,7 +59,6 @@ function Performance() {
         attendance: attendanceRes.data || [],
         performance: performance || [],
         results: resultsRes.data || [],
-        nutrition: nutritionRes.data || [],
       });
     } catch (error) {
       console.error(error);

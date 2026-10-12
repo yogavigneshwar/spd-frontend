@@ -8,9 +8,8 @@ import autoTable from "jspdf-autotable";
  * @param {Array} params.attendance - Array of attendance records
  * @param {Array} params.performance - Array of performance metrics
  * @param {Array} params.results - Array of competition results
- * @param {Array} params.nutrition - Array of daily nutrition logs
  */
-export function generateMonthlyReportPDF({ student, attendance = [], performance = [], results = [], nutrition = [] }) {
+export function generateMonthlyReportPDF({ student, attendance = [], performance = [], results = [] }) {
   const doc = new jsPDF({
     orientation: "portrait",
     unit: "mm",
@@ -34,20 +33,6 @@ export function generateMonthlyReportPDF({ student, attendance = [], performance
       return `${String(displayHours).padStart(2, "0")}:${minutes} ${ampm}`;
     } catch {
       return "N/A";
-    }
-  };
-
-  // Helper to format "05:30" string to "05:30 AM"
-  const formatSimpleTime = (timeStr) => {
-    if (!timeStr) return "-";
-    try {
-      const [h, m] = timeStr.split(":");
-      const hours = parseInt(h, 10);
-      const ampm = hours >= 12 ? "PM" : "AM";
-      const displayHours = hours % 12 || 12;
-      return `${String(displayHours).padStart(2, "0")}:${m} ${ampm}`;
-    } catch {
-      return timeStr;
     }
   };
 
@@ -135,17 +120,17 @@ export function generateMonthlyReportPDF({ student, attendance = [], performance
 
   doc.setFont("helvetica", "bold");
   doc.setTextColor(71, 85, 105);
-  doc.text("Attendance / Nutrition:", col2X, currentY + 23);
+  doc.text("Parent Contact:", col2X, currentY + 23);
   doc.setFont("helvetica", "normal");
-  doc.setTextColor(22, 163, 74); // green
-  doc.text(`${attendance.length} Sessions • ${nutrition.length} Diet Logs`, col2X + 37, currentY + 23);
+  doc.setTextColor(15, 23, 42);
+  doc.text(`${student?.parentMobile || "N/A"}`, col2X + 26, currentY + 23);
 
   doc.setFont("helvetica", "bold");
   doc.setTextColor(71, 85, 105);
-  doc.text("Parent Contact:", col3X, currentY + 23);
+  doc.text("Total Sessions:", col3X, currentY + 23);
   doc.setFont("helvetica", "normal");
-  doc.setTextColor(15, 23, 42);
-  doc.text(`${student?.parentMobile || "N/A"}`, col3X + 25, currentY + 23);
+  doc.setTextColor(22, 163, 74); // green
+  doc.text(`${attendance.length} Attended`, col3X + 26, currentY + 23);
 
   currentY += 40;
 
@@ -250,7 +235,7 @@ export function generateMonthlyReportPDF({ student, attendance = [], performance
 
   const recentAttendance = [...attendance]
     .sort((a, b) => new Date(b.date || 0) - new Date(a.date || 0))
-    .slice(0, 10);
+    .slice(0, 15);
 
   const attendanceRows = recentAttendance.length > 0
     ? recentAttendance.map((a) => [
@@ -284,57 +269,6 @@ export function generateMonthlyReportPDF({ student, attendance = [], performance
     margin: { left: 14, right: 14 },
   });
 
-  currentY = doc.lastAutoTable.finalY + 12;
-
-  if (currentY > pageHeight - 65) {
-    doc.addPage();
-    currentY = 20;
-  }
-
-  // 6. SECTION 4: OVERALL NUTRITION & ROUTINE STATUS
-  doc.setFont("helvetica", "bold");
-  doc.setFontSize(12);
-  doc.setTextColor(15, 23, 42);
-  doc.text("4. Overall Nutrition & Routine Discipline Status", 14, currentY);
-
-  const recentNutrition = [...nutrition]
-    .sort((a, b) => new Date(b.logDate || 0) - new Date(a.logDate || 0))
-    .slice(0, 10);
-
-  const nutritionRows = recentNutrition.length > 0
-    ? recentNutrition.map((n) => [
-        n.logDate || "N/A",
-        formatSimpleTime(n.wakeUpTime),
-        n.breakfast ? (n.breakfast.length > 30 ? n.breakfast.substring(0, 28) + "..." : n.breakfast) : "-",
-        n.lunch ? (n.lunch.length > 30 ? n.lunch.substring(0, 28) + "..." : n.lunch) : "-",
-        n.dinner ? (n.dinner.length > 30 ? n.dinner.substring(0, 28) + "..." : n.dinner) : "-",
-        formatSimpleTime(n.sleepTime),
-      ])
-    : [["No daily nutrition logs recorded for this period.", "", "", "", "", ""]];
-
-  autoTable(doc, {
-    startY: currentY + 3,
-    head: [["Date", "Wake Up", "Breakfast", "Lunch", "Dinner", "Sleep Time"]],
-    body: nutritionRows,
-    theme: "grid",
-    headStyles: {
-      fillColor: [15, 23, 42],
-      textColor: [250, 204, 21],
-      fontStyle: "bold",
-      fontSize: 9,
-      halign: "center",
-    },
-    bodyStyles: {
-      fontSize: 8,
-      textColor: [30, 41, 59],
-      halign: "center",
-    },
-    alternateRowStyles: {
-      fillColor: [248, 250, 252],
-    },
-    margin: { left: 14, right: 14 },
-  });
-
   currentY = doc.lastAutoTable.finalY + 14;
 
   if (currentY > pageHeight - 35) {
@@ -342,7 +276,7 @@ export function generateMonthlyReportPDF({ student, attendance = [], performance
     currentY = 20;
   }
 
-  // 7. COACH SIGN-OFF & FOOTER
+  // 6. COACH SIGN-OFF & FOOTER
   doc.setDrawColor(203, 213, 225);
   doc.line(14, currentY + 10, 70, currentY + 10);
   doc.setFont("helvetica", "normal");

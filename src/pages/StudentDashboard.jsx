@@ -33,11 +33,10 @@ function StudentDashboard() {
     try {
       setIsDownloading(true);
 
-      const [attendanceRes, performanceRes, resultsRes, nutritionRes] = await Promise.all([
+      const [attendanceRes, performanceRes, resultsRes] = await Promise.all([
         axios.get(`${API_URL}/attendance/student/${student.id}`).catch(() => ({ data: [] })),
         axios.get(`${API_URL}/performance/student/${student.id}`).catch(() => ({ data: [] })),
         axios.get(`${API_URL}/results/student/${student.id}`).catch(() => ({ data: [] })),
-        axios.get(`${API_URL}/nutrition/student/${student.id}`).catch(() => ({ data: [] })),
       ]);
 
       generateMonthlyReportPDF({
@@ -45,7 +44,6 @@ function StudentDashboard() {
         attendance: attendanceRes.data || [],
         performance: performanceRes.data || [],
         results: resultsRes.data || [],
-        nutrition: nutritionRes.data || [],
       });
     } catch (error) {
       console.error("Error generating monthly report:", error);
@@ -178,11 +176,6 @@ function StudentDashboard() {
         <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/student-qr")}>
           <h2>📷 My QR</h2>
           <p>Scan for attendance tracking</p>
-        </div>
-
-        <div className="dashboard-card responsive-card" style={cardStyle} onClick={() => navigate("/student-nutrition")}>
-          <h2>🥗 Daily Nutrition</h2>
-          <p>Log & track your daily meals & sleep</p>
         </div>
       </div>
 

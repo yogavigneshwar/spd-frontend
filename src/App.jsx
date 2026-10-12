@@ -7,15 +7,12 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import StudentDashboard from "./pages/StudentDashboard";
 import StudentQR from "./pages/StudentQR";
-import StudentTraining from "./pages/StudentTraining";
-import StudentNutrition from "./pages/StudentNutrition";
 import StudentResults from "./pages/StudentResults";
 
 import CoachDashboard from "./pages/CoachDashboard";
 import CoachQRScanner from "./pages/CoachQRScanner";
 import CoachPerformanceEntry from "./pages/CoachPerformanceEntry";
 import CoachResultsEntry from "./pages/CoachResultsEntry";
-import CoachNutrition from "./pages/CoachNutrition";
 
 import AddStudent from "./pages/AddStudent";
 import AddCoach from "./pages/AddCoach";
@@ -110,16 +107,7 @@ function App() {
 
         <Route
           path="/student-nutrition"
-          element={
-            <ProtectedRoute role="student">
-              <StudentNutrition />
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/student-training"
-          element={<Navigate to="/student-nutrition" replace />}
+          element={<Navigate to="/student-dashboard" replace />}
         />
 
         <Route
@@ -188,11 +176,7 @@ function App() {
 
         <Route
           path="/coach-nutrition"
-          element={
-            <ProtectedRoute role="coach">
-              <CoachNutrition />
-            </ProtectedRoute>
-          }
+          element={<Navigate to="/coach-dashboard" replace />}
         />
       </Routes>
     </Router>
